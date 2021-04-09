@@ -188,7 +188,7 @@ Choose a program from the list and try to gain a root shell, using the instructi
 
  Ok  , that's great  . Now check all listed program escape shell from GTFOBins  one by one .
 
-#### Step 2 : Go to GTFOBins website and choice escape shell according to your  sudo -l result . (Suppose  , we wanna check  (root) NOPASSWD: /usr/bin/find )
+#### Step 2 : Go to GTFOBins (https://gtfobins.github.io)  website and choice escape shell according to your  sudo -l result . (Suppose  , we wanna check  (root) NOPASSWD: /usr/bin/find )
         
          GTFOBins Result :
  
