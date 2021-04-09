@@ -160,7 +160,7 @@ Now switch to the newroot user, using the new password:
              step 2: run shell escape according to your listed programs that was the result of sudo -l command 
 
 
-☑️Attension Please : Visit GTFOBins (https://gtfobins.github.io) and search for some of the program names. If the program is listed with "sudo" as a function, you can use it to elevate privileges, usually via an escape sequence.
+#### ☑️Attension Please : Visit GTFOBins (https://gtfobins.github.io) and search for some of the program names. If the program is listed with "sudo" as a function, you can use it to elevate privileges, usually via an escape sequence.
 
 Choose a program from the list and try to gain a root shell, using the instructions from GTFOBins.
 
