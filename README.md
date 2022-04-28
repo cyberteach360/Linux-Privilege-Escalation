@@ -1,4 +1,5 @@
 # Linux-Privilege-Escalation
+![maxresdefault](https://user-images.githubusercontent.com/79256105/165799766-5fb55283-1d8e-469b-909d-88baf3a845de.jpg)
 
 
 # 🔥01: Readable /etc/shadow:
